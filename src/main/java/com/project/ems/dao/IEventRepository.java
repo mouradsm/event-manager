@@ -1,8 +1,7 @@
 package com.project.ems.dao;
 
-import org.springframework.data.repository.CrudRepository;
-
 import com.project.ems.entities.Event;
+import org.springframework.data.repository.CrudRepository;
 
 public interface IEventRepository extends CrudRepository<Event, Long> {
 

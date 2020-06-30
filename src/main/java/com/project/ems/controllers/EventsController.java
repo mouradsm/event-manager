@@ -26,6 +26,14 @@ public class EventsController {
 		return "index";
 	}
 
+	@GetMapping("/search")
+	public String filterEvents(Model model, @RequestParam String query) {
+
+		model.addAttribute("events", projectRepository.findByNameOrPlaceOrTypeOrDescriptionContains(query, query, query, query));
+		model.addAttribute("eventsTop3",projectRepository.findTop3By());
+		return "index";
+	}
+
 //	@GetMapping("/")
 //	public String getFilter(Event event, Model model, @RequestParam String query) {
 //		model.addAttribute("events", projectRepository.findByNameOrPlaceOrTypeOrDescriptionContains(query, query, query, query));
