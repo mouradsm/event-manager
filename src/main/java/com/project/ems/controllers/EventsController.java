@@ -5,6 +5,7 @@ import com.project.ems.entities.Event;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
@@ -46,22 +47,24 @@ public class EventsController {
 	}
 
 	//This method should handle the saving to the database
-	@PostMapping("/create")
-	public String createEvent(Event event, Model model) {
 
+	@GetMapping("/create")
+	public String create(Event event) {
+		return "create";
+	}
 
+	@PostMapping("/createevent")
+	public String createEvent(Event event, BindingResult result, Model model) {
 		projectRepository.save(event);
 		model.addAttribute("events", projectRepository.findAll());
 		
 		//use a redirect to prevent duplicate submissions
-		return "redirect:/index";
+		return "redirect:/";
 	}
 
 	@PostMapping("/update/{id}")
 	public String updateEvent() {
-
 		return "index";
-
 	}
 
 }
